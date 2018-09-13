@@ -8,17 +8,16 @@
 #include "insultgenerator_14cm24.h"
 using namespace std;
 
-InsultGenerator::InsultGenerator() {
-	cout << "InsultGenerator class instantiated." << endl;
-};
-
 string InsultGenerator::getRandomWord(vector<string> words) {
 	return words[rand() % words.size()];
 }
 
-
 void InsultGenerator::initialize() {
 	ifstream inputFile("InsultsSource.txt");
+	if (!inputFile.is_open()) {
+		FileException e;
+		throw e;
+	}
 	string oneLine;
 	while ( getline(inputFile, oneLine, '\n') ) {
 		vector <string> currentLineWords;
@@ -44,6 +43,10 @@ vector <string> InsultGenerator::generate(int numInsults) {
 	set<string> mySet;
 	string insult;
 	pair<set<string>::iterator, bool> ret;
+	if (numInsults > 10000) {
+		NumInsultsOutOfBounds e;
+		throw e;
+	}
 	srand(time(NULL));
 	for (int i = 0; i < numInsults; i++) {
 		insult = talkToMe();
@@ -62,20 +65,19 @@ vector <string> InsultGenerator::generate(int numInsults) {
 void InsultGenerator::generateAndSave(string fileName, int numInsults) {
 	vector<string> allInsults = generate(numInsults);
 	ofstream outFile(fileName);
+	if (!outFile.is_open()) {
+		FileException e;
+		throw e;
+	}
 	for (auto insult : allInsults) {
 		outFile << insult << endl;
 	}
 }
 
-int main() {
-	InsultGenerator ig;
-	ig.initialize();
-	vector<string> insults;
-	double start, finish;
-	start = clock();
-	insults = ig.generate(10000);
-	finish = clock();
-	ig.generateAndSave("test.txt", 100);
-	cout << (finish - start) << " ms to generate insults" << endl;
-	return 0;
+const char* FileException::what() {
+	return "File could not be read. Please try again.";
+}
+
+const char* NumInsultsOutOfBounds::what() {
+	return "Number of insults requested is out of bounds. \nPlease try a value less than 10000";
 }

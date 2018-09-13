@@ -20,15 +20,20 @@ class InsultGenerator {
 		std::vector<std::string> thirdColumnWords;
 		std::string getRandomWord(std::vector<std::string> words);
 	public:
-		InsultGenerator();
 		void initialize();
 		std::string talkToMe();
 		std::vector<std::string> generate(int numInsults);
 		void generateAndSave(std::string fileName, int numInsults);
 };
 
-class FileException : public exception {
+class NumInsultsOutOfBounds : public std::exception {
+	public:
+		const char* what();
+};
 
+class FileException : public std::exception {
+	public:
+		const char* what();
 };
 
 #endif /* INSULTGENERATOR_14CM24_H_ */
