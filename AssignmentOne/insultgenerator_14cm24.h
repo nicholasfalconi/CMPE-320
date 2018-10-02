@@ -6,34 +6,38 @@
  */
 
 // Include Guards
-#ifndef INSULTGENERATOR_14CM24_H_
-#define INSULTGENERATOR_14CM24_H_
+#pragma once
 
 // Dependencies
 #include <vector>
 #include <exception>
+using namespace std;
 
 class InsultGenerator {
 	private:
-		std::vector<std::string> firstColumnWords;
-		std::vector<std::string> secondColumnWords;
-		std::vector<std::string> thirdColumnWords;
-		std::string getRandomWord(std::vector<std::string> words);
+		vector<string> firstColumnWords;
+		vector<string> secondColumnWords;
+		vector<string> thirdColumnWords;
+		string getRandomWord(const vector<string>& words);
 	public:
 		void initialize();
-		std::string talkToMe();
-		std::vector<std::string> generate(int numInsults);
-		void generateAndSave(std::string fileName, int numInsults);
+		string talkToMe();
+		vector<string> generate(const int& numInsults);
+		void generateAndSave(const string& fileName, const int& numInsults);
 };
 
-class NumInsultsOutOfBounds : public std::exception {
+class NumInsultsOutOfBounds : public exception {
 	public:
-		const char* what();
+		NumInsultsOutOfBounds(const string& message);
+		string& what();
+	private:
+		string message;
 };
 
-class FileException : public std::exception {
+class FileException : public exception {
 	public:
-		const char* what();
+		FileException(const string& message);
+		string& what();
+	private:
+		string message;
 };
-
-#endif /* INSULTGENERATOR_14CM24_H_ */
