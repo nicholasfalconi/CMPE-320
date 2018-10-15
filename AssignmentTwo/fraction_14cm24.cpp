@@ -80,10 +80,29 @@ Fraction operator-(const Fraction& frac) {
 	return Fraction (-frac.numerator_, frac.denominator_);
 }
 
-Fraction operator++(const Fraction& frac) {
-	int num = frac.numerator_ + frac.denominator_;
-	return Fraction(num, frac.denominator_);
+Fraction Fraction::operator++(int unused) {
+	Fraction frac;
+	frac.numerator_ = numerator_;
+	frac.denominator_ = denominator_;
+	numerator_ += denominator_;
+	return frac;
 }
+
+Fraction& Fraction::operator++() {
+	numerator_ = numerator_ + denominator_;
+	return *this;
+}
+
+Fraction& Fraction::operator+=(const Fraction& right) {
+	numerator_ = (numerator_ * right.denominator_) + (right.numerator_ * denominator_);
+	denominator_ = denominator_ * right.denominator_;
+	int divisor = GCD(numerator_, denominator_);
+	numerator_ /= divisor;
+	denominator_ /= divisor;
+	return *this;
+}
+
+
 
 
 

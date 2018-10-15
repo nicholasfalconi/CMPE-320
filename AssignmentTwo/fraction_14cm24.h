@@ -5,10 +5,11 @@
  *      Author: chrismaltais
  */
 
-#ifndef FRACTION_14CM24_H_
-#define FRACTION_14CM24_H_
+#pragma once
 
-#include <iostream>;
+using namespace std;
+#include <iostream>
+
 
 class Fraction {
 	private:
@@ -20,9 +21,12 @@ class Fraction {
 		Fraction(int numerator = 0, int denominator = 1);
 		const int numerator();
 		const int denominator();
+		Fraction operator++(int);
+		Fraction& operator++();
+		Fraction& operator+=(const Fraction& right);
 
 	// I/O Operators
-	friend std::ostream& operator<<(std::ostream& out, const Fraction& fraction);
+	friend ostream& operator<<(ostream& out, const Fraction& fraction);
 
 	// Binary Operators
 	friend Fraction operator+(const Fraction& lhs, const Fraction& rhs);
@@ -32,10 +36,8 @@ class Fraction {
 
 	// Unary Operators
 	friend Fraction operator-(const Fraction& frac);
-	friend Fraction operator++(const Fraction& frac);
+
 };
 
 
 
-
-#endif /* FRACTION_14CM24_H_ */

@@ -56,18 +56,20 @@ int main() {
 	cout << "Should be \"-1/6\": " << -test7 << endl;
 
 	// Test pre and post-increment operators
-	Fraction test14 = test3++;
+	Fraction test14 = 2 + test3++;
 	cout << "Should be \"8/3\": " << test14 << endl;
 	cout << "Should be \"5/3\": " << test3 << endl;
+
+
 	Fraction test15 = 2 + ++test3;
 	cout << "Should be \"14/3\": " << test15 << endl;
 	cout << "Should be \"8/3\": " << test3 << endl;
 
-	/*
 	// Test += operator
 	Fraction test16(3, 8);
 	test16 += test3;
 	cout << "Should be \"73/24\": " << test16 << endl;
+/*
 
 	// Test comparisons
 	cout << "\nShould see six comparison test results:" << endl;
