@@ -15,7 +15,6 @@ class Fraction {
 		int numerator_;
 		int denominator_;
 		int GCD(const int& n, const int& m);
-		Fraction reduce(Fraction& fraction);
 	public:
 		Fraction(int numerator = 0, int denominator = 1);
 		// Accessors
@@ -26,20 +25,13 @@ class Fraction {
 		Fraction& operator++();
 		Fraction& operator-();
 		// Member Binary Operator (potential mixed type expression)
+		// Just wanted to try it out as a member function instead of non-member
 		Fraction& operator+=(const Fraction& right);
 
 	// I/O Operators
 	friend ostream& operator<<(ostream& out, const Fraction& fraction);
-	friend istream& operator>>(istream& in, const Fraction& fraction);
+	friend istream& operator>>(istream& in, Fraction& fraction);
 
-};
-
-class FractionException {
-	public:
-		FractionException(const string& message);
-		string& what();
-	private:
-		string message;
 };
 
 // Non-member Binary Operators
@@ -56,6 +48,14 @@ bool operator>=(const Fraction& lhs, const Fraction& rhs);
 bool operator<(const Fraction& lhs, const Fraction& rhs);
 bool operator<=(const Fraction& lhs, const Fraction& rhs);
 bool operator!=(const Fraction& lhs, const Fraction& rhs);
+
+class FractionException {
+	public:
+		FractionException(const string& message);
+		string& what();
+	private:
+		string message;
+};
 
 
 

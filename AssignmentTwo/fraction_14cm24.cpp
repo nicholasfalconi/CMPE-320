@@ -5,15 +5,12 @@
  *      Author: chrismaltais
  */
 #include <iostream>
+#include <sstream>
+#include <vector>
 #include <cmath>
+#include <string>
 #include "fraction_14cm24.h"
 using namespace std;
-
-Fraction Fraction::reduce(Fraction& frac) {
-	frac.numerator_ = frac.numerator_/GCD(frac.numerator_, frac.denominator_);
-	frac.denominator_ = frac.denominator_/GCD(frac.numerator_, frac.denominator_);
-	return frac;
-}
 
 Fraction::Fraction(int num, int denom) {
 	if (denom == 0) {
@@ -31,6 +28,7 @@ Fraction::Fraction(int num, int denom) {
 }
 
 int Fraction::GCD(const int& n, const int& m) {
+	if (m == 0 || n == 0) return 1;
 	int m_abs = abs(m);
 	int n_abs = abs(n);
 	if (m_abs <= n_abs && n_abs % m_abs == 0) {
@@ -42,11 +40,11 @@ int Fraction::GCD(const int& n, const int& m) {
 	}
 }
 
-const int& Fraction::numerator() const { // @suppress("Ambiguous problem")
+const int& Fraction::numerator() const {
 	return numerator_;
 }
 
-const int& Fraction::denominator() const{ // @suppress("Ambiguous problem")
+const int& Fraction::denominator() const{
 	return denominator_;
 }
 
@@ -55,8 +53,29 @@ ostream& operator<<(ostream& out, const Fraction& fraction) {
 	return out;
 }
 
-istream& operator>>(istream& in, const Fraction& fraction) {
-	in >> fraction.numerator_ >> fraction.denominator_;
+// Use string stream to split input by '/' and store values in vector (container)
+// If '/' is not in input, container will be of size 1 containing int
+// container[0] should be numerator
+// container[1] should be denominator
+// Convert string values to int using stoi
+istream& operator>>(istream& in, Fraction& fraction) {
+	string input;
+	in >> input;
+	stringstream ss(input);
+	string number;
+	vector<string> container;
+	while(getline(ss, number, '/')) {
+		container.push_back(number);
+	}
+	if (container.size() < 2) {
+		fraction.numerator_ = stoi(input);
+		fraction.denominator_ = 1;
+	} else if (stoi(container[1]) == 0) {
+		throw FractionException("Denominator is equal to 0, invalid fraction.");
+	} else {
+		fraction.numerator_ = stoi(container[0]);
+		fraction.denominator_ = stoi(container[1]);
+	}
 	return in;
 }
 
