@@ -34,18 +34,31 @@ namespace GUIPart {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TextBox^  num1TB;
+	private: System::Windows::Forms::TextBox^  denom1TB;
+	private: System::Windows::Forms::TextBox^  num2TB;
+	private: System::Windows::Forms::TextBox^  denom2TB;
+	private: System::Windows::Forms::TextBox^  denomAnsTB;
 	protected:
-	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::TextBox^  textBox5;
-	private: System::Windows::Forms::TextBox^  textBox6;
-	private: System::Windows::Forms::CheckBox^  checkBox1;
-	private: System::Windows::Forms::CheckBox^  checkBox2;
-	private: System::Windows::Forms::CheckBox^  checkBox3;
-	private: System::Windows::Forms::CheckBox^  checkBox4;
-	private: System::Windows::Forms::Button^  button1;
+
+	protected:
+
+
+
+
+	private: System::Windows::Forms::TextBox^  numAnsTB;
+	private: System::Windows::Forms::CheckBox^  addCB;
+	private: System::Windows::Forms::CheckBox^  subCB;
+
+	private: System::Windows::Forms::CheckBox^  mulCB;
+	private: System::Windows::Forms::CheckBox^  divCB;
+	private: System::Windows::Forms::Button^  equalsBut;
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
@@ -64,127 +77,130 @@ namespace GUIPart {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->num1TB = (gcnew System::Windows::Forms::TextBox());
+			this->denom1TB = (gcnew System::Windows::Forms::TextBox());
+			this->num2TB = (gcnew System::Windows::Forms::TextBox());
+			this->denom2TB = (gcnew System::Windows::Forms::TextBox());
+			this->denomAnsTB = (gcnew System::Windows::Forms::TextBox());
+			this->numAnsTB = (gcnew System::Windows::Forms::TextBox());
+			this->addCB = (gcnew System::Windows::Forms::CheckBox());
+			this->subCB = (gcnew System::Windows::Forms::CheckBox());
+			this->mulCB = (gcnew System::Windows::Forms::CheckBox());
+			this->divCB = (gcnew System::Windows::Forms::CheckBox());
+			this->equalsBut = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// num1TB
 			// 
-			this->textBox1->Location = System::Drawing::Point(40, 41);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(72, 20);
-			this->textBox1->TabIndex = 0;
+			this->num1TB->Location = System::Drawing::Point(40, 41);
+			this->num1TB->Name = L"num1TB";
+			this->num1TB->Size = System::Drawing::Size(72, 20);
+			this->num1TB->TabIndex = 0;
 			// 
-			// textBox2
+			// denom1TB
 			// 
-			this->textBox2->Location = System::Drawing::Point(40, 109);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(72, 20);
-			this->textBox2->TabIndex = 1;
+			this->denom1TB->Location = System::Drawing::Point(40, 109);
+			this->denom1TB->Name = L"denom1TB";
+			this->denom1TB->Size = System::Drawing::Size(72, 20);
+			this->denom1TB->TabIndex = 1;
 			// 
-			// textBox3
+			// num2TB
 			// 
-			this->textBox3->Location = System::Drawing::Point(166, 41);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(72, 20);
-			this->textBox3->TabIndex = 2;
+			this->num2TB->Location = System::Drawing::Point(166, 41);
+			this->num2TB->Name = L"num2TB";
+			this->num2TB->Size = System::Drawing::Size(72, 20);
+			this->num2TB->TabIndex = 7;
 			// 
-			// textBox4
+			// denom2TB
 			// 
-			this->textBox4->Location = System::Drawing::Point(166, 109);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(72, 20);
-			this->textBox4->TabIndex = 3;
+			this->denom2TB->Location = System::Drawing::Point(166, 109);
+			this->denom2TB->Name = L"denom2TB";
+			this->denom2TB->Size = System::Drawing::Size(72, 20);
+			this->denom2TB->TabIndex = 8;
 			// 
-			// textBox5
+			// denomAnsTB
 			// 
-			this->textBox5->Location = System::Drawing::Point(311, 109);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(72, 20);
-			this->textBox5->TabIndex = 4;
+			this->denomAnsTB->Location = System::Drawing::Point(311, 109);
+			this->denomAnsTB->Name = L"denomAnsTB";
+			this->denomAnsTB->Size = System::Drawing::Size(72, 20);
+			this->denomAnsTB->TabIndex = 4;
+			this->denomAnsTB->TabStop = false;
 			// 
-			// textBox6
+			// numAnsTB
 			// 
-			this->textBox6->Location = System::Drawing::Point(311, 41);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(72, 20);
-			this->textBox6->TabIndex = 5;
+			this->numAnsTB->Location = System::Drawing::Point(311, 41);
+			this->numAnsTB->Name = L"numAnsTB";
+			this->numAnsTB->Size = System::Drawing::Size(72, 20);
+			this->numAnsTB->TabIndex = 5;
+			this->numAnsTB->TabStop = false;
 			// 
-			// checkBox1
+			// addCB
 			// 
-			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(128, 43);
-			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(32, 17);
-			this->checkBox1->TabIndex = 6;
-			this->checkBox1->Text = L"+";
-			this->checkBox1->UseVisualStyleBackColor = true;
+			this->addCB->AutoSize = true;
+			this->addCB->Location = System::Drawing::Point(128, 43);
+			this->addCB->Name = L"addCB";
+			this->addCB->Size = System::Drawing::Size(32, 17);
+			this->addCB->TabIndex = 3;
+			this->addCB->Text = L"+";
+			this->addCB->UseVisualStyleBackColor = true;
+			this->addCB->CheckedChanged += gcnew System::EventHandler(this, &GUI::addCB_CheckedChanged);
 			// 
-			// checkBox2
+			// subCB
 			// 
-			this->checkBox2->AutoSize = true;
-			this->checkBox2->Location = System::Drawing::Point(128, 66);
-			this->checkBox2->Name = L"checkBox2";
-			this->checkBox2->Size = System::Drawing::Size(29, 17);
-			this->checkBox2->TabIndex = 7;
-			this->checkBox2->Text = L"-";
-			this->checkBox2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			this->checkBox2->UseVisualStyleBackColor = true;
-		
+			this->subCB->AutoSize = true;
+			this->subCB->Location = System::Drawing::Point(128, 66);
+			this->subCB->Name = L"subCB";
+			this->subCB->Size = System::Drawing::Size(29, 17);
+			this->subCB->TabIndex = 4;
+			this->subCB->Text = L"-";
+			this->subCB->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->subCB->UseVisualStyleBackColor = true;
+			this->subCB->CheckedChanged += gcnew System::EventHandler(this, &GUI::subCB_CheckedChanged);
 			// 
-			// checkBox3
+			// mulCB
 			// 
-			this->checkBox3->AutoSize = true;
-			this->checkBox3->Location = System::Drawing::Point(128, 89);
-			this->checkBox3->Name = L"checkBox3";
-			this->checkBox3->Size = System::Drawing::Size(30, 17);
-			this->checkBox3->TabIndex = 8;
-			this->checkBox3->Text = L"*";
-			this->checkBox3->UseVisualStyleBackColor = true;
-			
+			this->mulCB->AutoSize = true;
+			this->mulCB->Location = System::Drawing::Point(128, 89);
+			this->mulCB->Name = L"mulCB";
+			this->mulCB->Size = System::Drawing::Size(31, 17);
+			this->mulCB->TabIndex = 5;
+			this->mulCB->Text = L"x";
+			this->mulCB->UseVisualStyleBackColor = true;
+			this->mulCB->CheckedChanged += gcnew System::EventHandler(this, &GUI::mulCB_CheckedChanged);
 			// 
-			// checkBox4
+			// divCB
 			// 
-			this->checkBox4->AutoSize = true;
-			this->checkBox4->Location = System::Drawing::Point(128, 112);
-			this->checkBox4->Name = L"checkBox4";
-			this->checkBox4->Size = System::Drawing::Size(31, 17);
-			this->checkBox4->TabIndex = 9;
-			this->checkBox4->Text = L"/";
-			this->checkBox4->UseVisualStyleBackColor = true;
-			
+			this->divCB->AutoSize = true;
+			this->divCB->Location = System::Drawing::Point(128, 112);
+			this->divCB->Name = L"divCB";
+			this->divCB->Size = System::Drawing::Size(31, 17);
+			this->divCB->TabIndex = 6;
+			this->divCB->Text = L"/";
+			this->divCB->UseVisualStyleBackColor = true;
+			this->divCB->CheckedChanged += gcnew System::EventHandler(this, &GUI::divCB_CheckedChanged);
 			// 
-			// button1
+			// equalsBut
 			// 
-			this->button1->Location = System::Drawing::Point(256, 72);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(37, 23);
-			this->button1->TabIndex = 10;
-			this->button1->Text = L"=";
-			this->button1->UseVisualStyleBackColor = true;
-			
+			this->equalsBut->Location = System::Drawing::Point(256, 72);
+			this->equalsBut->Name = L"equalsBut";
+			this->equalsBut->Size = System::Drawing::Size(37, 23);
+			this->equalsBut->TabIndex = 9;
+			this->equalsBut->Text = L"=";
+			this->equalsBut->UseVisualStyleBackColor = true;
+			this->equalsBut->Click += gcnew System::EventHandler(this, &GUI::equalsBut_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(38, 79);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(76, 13);
+			this->label1->Size = System::Drawing::Size(64, 13);
 			this->label1->TabIndex = 11;
-			this->label1->Text = L"-----------------------";
+			this->label1->Text = L"-------------------";
 			// 
 			// label2
 			// 
@@ -199,18 +215,18 @@ namespace GUIPart {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(164, 79);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(76, 13);
+			this->label3->Size = System::Drawing::Size(64, 13);
 			this->label3->TabIndex = 13;
-			this->label3->Text = L"-----------------------";
+			this->label3->Text = L"-------------------";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(308, 79);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(76, 13);
+			this->label4->Size = System::Drawing::Size(64, 13);
 			this->label4->TabIndex = 14;
-			this->label4->Text = L"-----------------------";
+			this->label4->Text = L"-------------------";
 			// 
 			// GUI
 			// 
@@ -221,17 +237,17 @@ namespace GUIPart {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->checkBox4);
-			this->Controls->Add(this->checkBox3);
-			this->Controls->Add(this->checkBox2);
-			this->Controls->Add(this->checkBox1);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->equalsBut);
+			this->Controls->Add(this->divCB);
+			this->Controls->Add(this->mulCB);
+			this->Controls->Add(this->subCB);
+			this->Controls->Add(this->addCB);
+			this->Controls->Add(this->numAnsTB);
+			this->Controls->Add(this->denomAnsTB);
+			this->Controls->Add(this->denom2TB);
+			this->Controls->Add(this->num2TB);
+			this->Controls->Add(this->denom1TB);
+			this->Controls->Add(this->num1TB);
 			this->Name = L"GUI";
 			this->Text = L"Fraction Calculator by Chris Maltais";
 			this->Load += gcnew System::EventHandler(this, &GUI::GUI_Load);
@@ -241,7 +257,133 @@ namespace GUIPart {
 		}
 #pragma endregion
 	private: System::Void GUI_Load(System::Object^  sender, System::EventArgs^  e) {
+		// Load cursor to start here
+		// Disable Textbox for answer
+		// Enter key equivalent for equal button
+		// Alt Key to close window
+		// Close button should close window (close())
+		// On Change of textboxes, all values should be wiped
 	}
 
+private: System::Void addCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (addCB->Checked) {
+		subCB->Checked = false;
+		mulCB->Checked = false;
+		divCB->Checked = false;
+	}
+}
+
+private: System::Void subCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (subCB->Checked) {
+		addCB->Checked = false;
+		mulCB->Checked = false;
+		divCB->Checked = false;
+	}
+}
+
+private: System::Void mulCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (mulCB->Checked) {
+		subCB->Checked = false;
+		addCB->Checked = false;
+		divCB->Checked = false;
+	}
+}
+private: System::Void divCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (divCB->Checked) {
+		subCB->Checked = false;
+		mulCB->Checked = false;
+		addCB->Checked = false;
+	}
+}
+private: System::Void equalsBut_Click(System::Object^  sender, System::EventArgs^  e) {
+	int num1;
+	int denom1;
+	int num2;
+	int denom2;
+
+	// Handles no operator selected
+	if (addCB->Checked == false && subCB->Checked == false && mulCB->Checked == false && divCB->Checked == false) {
+		MessageBox::Show("Error: Must select an operation!");
+		return;
+	}
+
+	// Handles empty fraction
+	if (num1TB->Text == "" || num2TB->Text == "" || denom1TB->Text == "" || denom2TB->Text == "") {
+		MessageBox::Show("Error: Please ensure all text boxes are populated.");
+		return;
+	}
+	
+	// This handles non-int for Fraction1 numerator
+	try {
+		String^ num1str = num1TB->Text;
+		num1 = Convert::ToInt32(num1str);
+	} catch (...) {
+		MessageBox::Show("Please enter a valid integer in the numerator of the first fraction!");
+		return;
+	}
+
+	// This handles non-int for Fraction2 numerator
+	try {
+		String^ num2str = num2TB->Text;
+		num2 = Convert::ToInt32(num2str);
+	}
+	catch (...) {
+		MessageBox::Show("Please enter a valid integer in the numerator of the second fraction!");
+		return;
+	}
+
+	// This handles non-int for Fraction1 denominator
+	try {
+		String^ denom1str = denom1TB->Text;
+		denom1 = Convert::ToInt32(denom1str);
+	}
+	catch (...) {
+		MessageBox::Show("Please enter a valid integer in the denominator of the first fraction!");
+		return;
+	}
+
+	// This handles non-int for Fraction2 denominator
+	try {
+		String^ denom2str = denom2TB->Text;
+		denom2 = Convert::ToInt32(denom2str);
+	}
+	catch (...) {
+		MessageBox::Show("Please enter a valid integer in the denominator of the second fraction!");
+		return;
+	}
+
+	// This handles 0 for denominator of first fraction
+	if (denom1 == 0) {
+		MessageBox::Show("Error: Denominator of Fraction 1 cannot be 0!");
+		return;
+	}
+
+	// This handles 0 for denominator of second fraction
+	if (denom2 == 0) {
+		MessageBox::Show("Error: Denominator of Fraction 2 cannot be 0!");
+		return;
+	}
+
+	int* ans;
+	cout << num1 << endl;
+	cout << denom1 << endl;
+	cout << num2 << endl;
+	cout << denom2 << endl;
+
+	if (addCB->Checked) {
+		ans = addFrac(num1, denom1, num2, denom2);
+		cout << ans[0] << "/" << ans[1] << endl;
+	} else if (subCB->Checked) {
+		ans = subFrac(num1, denom1, num2, denom2);
+	} else if (mulCB->Checked) {
+		ans = multFrac(num1, denom1, num2, denom2);
+	} else if (divCB->Checked) {
+		ans = divFrac(num1, denom1, num2, denom2);
+	}
+
+	cout << ans[0] << "/" << ans[1] << endl;
+
+	// If result is negative, only numerator negative
+}
 };
 }

@@ -1,0 +1,10 @@
+﻿  Fraction_DLL2.cpp
+c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.cpp(13): warning C4273: 'addFrac': inconsistent dll linkage
+  c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.h(18): note: see previous definition of 'addFrac'
+c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.cpp(23): warning C4273: 'subFrac': inconsistent dll linkage
+  c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.h(19): note: see previous definition of 'subFrac'
+c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.cpp(33): warning C4273: 'multFrac': inconsistent dll linkage
+  c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.h(20): note: see previous definition of 'multFrac'
+c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.cpp(43): warning C4273: 'divFrac': inconsistent dll linkage
+  c:\users\14cm24\documents\cmpe-320-master\assignment3\fraction_dll2\fraction_dll2\fraction_dll2.h(21): note: see previous definition of 'divFrac'
+  Fraction_DLL2.vcxproj -> C:\Users\14cm24\Documents\CMPE-320-master\Assignment3\Fraction_DLL2\x64\Debug\Fraction_DLL2.dll
