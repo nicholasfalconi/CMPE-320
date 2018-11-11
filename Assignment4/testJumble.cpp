@@ -42,13 +42,15 @@ void showJumble(const charArrayPtr* jumble, const int size) {
 void playGame() {
 	string toHide;
 	string difficulty;
+	bool foundWord = false;
+	bool guess = true;
 	int guessRow, guessCol;
 	int start, finish;
 	char guessDirection;
 
 	cout << "Provide a string to hide in the puzzle, all lower case: ";
 	cin >> toHide;
-	cout << "\nChoose your difficulty level: \"easy\", \"medium\" or \"hard\": ";
+	cout << "\nChoose your difficulty level: \"easy\", \"medium\", \"hard\" or \"extreme\": ";
 	cin >> difficulty;
 
 	JumblePuzzle* jp;
@@ -60,21 +62,35 @@ void playGame() {
 	}
 	showJumble(jp->getJumble(), jp->getSize());
 	start = static_cast<int>(time(nullptr));
-	cout << "Enter row location: ";
-	cin >> guessRow;
-	cout << "Enter column location: ";
-	cin >> guessCol;
-	cout << "Enter direction (\"n\", \"e\", \"s\" or \"w\"): ";
-	cin >> guessDirection;
+	while (foundWord != true && guess != false) {
+		cout << "Enter row location: ";
+		cin >> guessRow;
+		cout << "Enter column location: ";
+		cin >> guessCol;
+		cout << "Enter direction (\"n\", \"e\", \"s\" or \"w\"): ";
+		cin >> guessDirection;
+		if (guessRow == jp->getRowPos() && guessCol == jp->getColPos() && guessDirection == jp->getDirection()) {
+			foundWord = true;
+			
+		} else if (jp->getJumble()[guessRow][guessCol] == toHide[0]) {
+			guess = jp->checkExtreme(guessRow, guessCol, guessDirection);
+			if (guess) {
+				cout << "You found the word, but it's not the right one! Try again." << endl;
+			}
+		} else {
+			guess = false;
+		}
+			
+	}
+	
 	finish = static_cast<int>(time(nullptr));
-	if (guessRow == jp->getRowPos() && guessCol == jp->getColPos() &&
-			guessDirection == jp->getDirection())
-		cout << "You found it!" << endl;
-	else {
+	
+	if (!guess) {
 		cout << "Wrong location..." << endl;
 		cout << "The location is row: " << jp->getRowPos() << " col: " << jp->getColPos()
 				<< ", direction: " << jp->getDirection() << endl;
 	}
+
 	cout << "You took " << (finish - start) << " seconds." << endl;
 	delete jp;
 	jp = nullptr;
@@ -86,7 +102,7 @@ void playGame() {
 // thrown when they should be, that the puzzle is the correct size and is formed properly, and
 // that the accessors return what they should.  You can add these unit tests as you develop your
 // code ("TDD") and comment out the supplied tests until you are ready for them.
-/*void testJumble() {
+void testJumble() {
 
 	// Test copy constructor for proper operation
 	cout << "Testing copy constructor:" << endl;
@@ -152,13 +168,13 @@ void playGame() {
 		JumblePuzzle jp("HIDDENWORD", "hard");
 	cout << "\nPassed memory leak test!" << endl;
 
-} // end testJumble */
+} // end testJumble 
 
 int main() {
-	//testJumble();
+	testJumble();
 
 	// Make sure your class works before you play the game!
-	playGame();
+	//playGame();
 
 	return 0;
 } // end main

@@ -37,12 +37,13 @@ class JumblePuzzle {
         JumblePuzzle(const string& toHide, const string& difficulty); // parametrized constructor
         JumblePuzzle(const JumblePuzzle&); // copy constructor
         ~JumblePuzzle(); // Destructor
-        JumblePuzzle& operator=(const JumblePuzzle&);
+        JumblePuzzle& operator=(const JumblePuzzle&); // Assignment Operator
         charArrayPtr* getJumble() const;
         int getSize() const;
         int getRowPos() const;
         int getColPos() const;
         char getDirection() const;
+        bool checkExtreme(const int& guessRow, const int& guessCol, const char& guessDir);
 };
 
 class BadJumbleException {

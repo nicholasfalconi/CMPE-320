@@ -15,7 +15,7 @@ BadJumbleException::BadJumbleException(const string& m) : message(m) {}
 string& BadJumbleException::what() { return message; }
 
 JumblePuzzle::JumblePuzzle(const string& hiddenWord, const string& difficulty) {
-    bool isValidDifficulty = difficulty == "easy" || difficulty == "medium" || difficulty == "hard";
+    bool isValidDifficulty = difficulty == "easy" || difficulty == "medium" || difficulty == "hard" || difficulty == "extreme";
     bool isValidHiddenWord = hiddenWord.length() > 0;
     if (isValidDifficulty && isValidHiddenWord) {
         this->hiddenWord = hiddenWord;
@@ -25,9 +25,9 @@ JumblePuzzle::JumblePuzzle(const string& hiddenWord, const string& difficulty) {
         // Create puzzle of length size with random letters
         this->puzzle = initializePuzzle();
     } else if (!isValidDifficulty) {
-        throw BadJumbleException("Invalid difficulty - please enter 'easy', 'medium' or 'hard' (case sensitive)");
+        throw BadJumbleException("\nInvalid difficulty - please enter 'easy', 'medium', 'hard' or extreme (case sensitive)\n");
     } else if (!isValidHiddenWord) {
-        throw BadJumbleException("Invalid word to hide - please enter another word.");
+        throw BadJumbleException("\nInvalid word to hide - please enter another word.\n");
     }
 }
 
@@ -36,9 +36,9 @@ const int& JumblePuzzle::setSize() {
         return this->hiddenWord.length() * 2;
     } else if (this->difficulty == "medium") {
         return this->hiddenWord.length() * 3;
-    } else if (this->difficulty == "hard") {
+    } else if (this->difficulty == "hard" || this->difficulty == "extreme") {
         return this->hiddenWord.length() * 4;
-    }
+    } 
     return -1;
 }
 
@@ -58,8 +58,6 @@ charArrayPtr* JumblePuzzle::initializePuzzle() {
         if (direction == 'n') { // randomPuzzle[row--][col]
             while (row >= 0 && hiddenWordIdx < this->hiddenWord.length()) {
                 completePuzzle[row--][col] = this->hiddenWord[hiddenWordIdx++];
-                cout << "Hidden word index is: " << hiddenWordIdx << endl;
-                cout << "Column is: " << row << endl;
             }
             if (hiddenWordIdx == this->hiddenWord.length()) {
                 wordPlaced = true;
@@ -96,7 +94,11 @@ charArrayPtr* JumblePuzzle::initializeRandomPuzzle(const int& size) {
     for (int i = 0; i < size; i++) {
         randomPuzzle[i] = new char[size];
         for (int j = 0; j < size; j++) {
-            randomPuzzle[i][j] = 'a' + rand() % 26; // Select random letter using ASCII
+            if (this->difficulty == "extreme") {
+                randomPuzzle[i][j] = this->hiddenWord[rand() % this->hiddenWord.length()];
+            } else{
+                randomPuzzle[i][j] = 'a' + rand() % 26; // Select random letter using ASCII
+            }
         }
     }
     return randomPuzzle;
@@ -138,21 +140,20 @@ JumblePuzzle& JumblePuzzle::operator=(const JumblePuzzle& rhs) {
             delete[] puzzle[i];
         }
         delete[] puzzle;
-        this->puzzleSize = rhs.getSize();
-        this->rowPos = rhs.getRowPos();
-        this->colPos = rhs.getColPos();
-        this->direction = rhs.getDirection();
+        puzzleSize = rhs.getSize();
+        rowPos = rhs.getRowPos();
+        colPos = rhs.getColPos();
+        direction = rhs.getDirection();
 
         charArrayPtr* existingPuzzle = rhs.getJumble();
-        charArrayPtr* newPuzzle = new charArrayPtr[this->puzzleSize];
+        puzzle = new charArrayPtr[puzzleSize];
 
-        for (int i = 0; i < this->puzzleSize; i++) {
-            newPuzzle[i] = new char[this->puzzleSize];
-            for (int j = 0; j < this->puzzleSize; j++) {
-                newPuzzle[i][j] = existingPuzzle[i][j];
+        for (int i = 0; i < puzzleSize; i++) {
+            puzzle[i] = new char[puzzleSize];
+            for (int j = 0; j < puzzleSize; j++) {
+                puzzle[i][j] = existingPuzzle[i][j];
             }
         }
-        this->puzzle = newPuzzle;
     }
     return *this;
 }
@@ -175,5 +176,34 @@ char JumblePuzzle::getDirection() const {
 
 charArrayPtr* JumblePuzzle::getJumble() const {
     return this->puzzle;
+}
+
+bool JumblePuzzle::checkExtreme(const int& guessRow, const int& guessCol, const char& guessDir) {
+    if (guessDir == 'n') {
+        for (int i = 0; i < this->hiddenWord.length(); i++) {
+            if (puzzle[guessRow - i][guessCol] != hiddenWord[i]) {
+                return false;
+            }
+        }
+    } else if (guessDir == 'e') {
+        for (int i = 0; i < this->hiddenWord.length(); i++) {
+            if (puzzle[guessRow][guessCol + i] != hiddenWord[i]) {
+                return false;
+            }
+        }
+    } else if (guessDir == 's') {
+        for (int i = 0; i < this->hiddenWord.length(); i++) {
+            if (puzzle[guessRow + i][guessCol] != hiddenWord[i]) {
+                return false;
+            }
+        }
+    } else if (guessDir == 'w') {
+        for (int i = 0; i < this->hiddenWord.length(); i++) {
+            if (puzzle[guessRow][guessCol - i] != hiddenWord[i]) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
