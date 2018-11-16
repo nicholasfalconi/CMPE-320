@@ -172,8 +172,16 @@ char JumblePuzzle::getDirection() const {
     return this->direction;
 }
 
+// This function is wrong, does not prevent aliasing. Ran out of time, but was able to identify where issue is.
 charArrayPtr* JumblePuzzle::getJumble() const {
-    return this->puzzle;
+    charArrayPtr* tempPuzzle = new charArrayPtr[puzzleSize];
+    for (int i = 0; i < puzzleSize; i++) {
+        tempPuzzle[i] = new char[puzzleSize];
+        for (int j = 0; j < puzzleSize; j++) {
+            tempPuzzle[i][j] = puzzle[i][j];
+        }
+    }
+    return tempPuzzle;
 }
 
 bool JumblePuzzle::checkExtreme(const int& guessRow, const int& guessCol, const char& guessDir) {
