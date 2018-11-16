@@ -168,6 +168,90 @@ void testJumble() {
 		JumblePuzzle jp("HIDDENWORD", "hard");
 	cout << "\nPassed memory leak test!" << endl;
 
+    // ADDITIONAL UNIT TESTS *****************
+
+    // Test Suite: Copy Constructor Attributes
+    cout << "\nComparing Attributes from JumblePuzzle object built via copy constructor:" << endl;
+    JumblePuzzle jp5(jp1);
+
+    // Test: getSize() methods yield same values for JumblePuzzle Objects
+    cout << "getSize(): ";
+    bool sameSize = jp5.getSize() == jp1.getSize();
+    if (sameSize) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test: getRowPos() methods yield same values for JumblePuzzle Objects
+    cout << "getRowPos(): ";
+    bool sameRowPos = jp5.getRowPos() == jp1.getRowPos();
+    if (sameRowPos) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test: getColPos() methods yield same values for JumblePuzzle Objects
+    cout << "getColPos(): ";
+    bool sameColPos = jp5.getColPos() == jp1.getColPos();
+    if (sameColPos) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test: getDirection() methods yield same values for JumblePuzzle Objects
+    cout << "getDirection(): ";
+    bool sameDirection = jp5.getDirection() == jp1.getDirection();
+    if (sameDirection) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test Suite: Assignment Operator Attributes
+    cout << "\nComparing Attributes from JumblePuzzle object built via assignment operator:" << endl;
+    JumblePuzzle jp6 = jp1;
+
+    // Test: getSize() methods yield same values for JumblePuzzle Objects
+    cout << "getSize(): ";
+    bool sameSizeAO = jp6.getSize() == jp1.getSize();
+    if (sameSizeAO) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test: getRowPos() methods yield same values for JumblePuzzle Objects
+    cout << "getRowPos(): ";
+    bool sameRowPosAO= jp6.getRowPos() == jp1.getRowPos();
+    if (sameRowPosAO) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test: getColPos() methods yield same values for JumblePuzzle Objects
+    cout << "getColPos(): ";
+    bool sameColPosAO = jp6.getColPos() == jp1.getColPos();
+    if (sameColPosAO) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // Test: getDirection() methods yield same values for JumblePuzzle Objects
+    cout << "getDirection(): ";
+    bool sameDirectionAO = jp6.getDirection() == jp1.getDirection();
+    if (sameDirectionAO) {
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+
+    // 
+
 } // end testJumble 
 
 int main() {

@@ -33,7 +33,6 @@ class JumblePuzzle {
         const int& setSize();
 
     public:
-        JumblePuzzle(); // default constructor
         JumblePuzzle(const string& toHide, const string& difficulty); // parametrized constructor
         JumblePuzzle(const JumblePuzzle&); // copy constructor
         ~JumblePuzzle(); // Destructor

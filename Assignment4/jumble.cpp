@@ -115,22 +115,20 @@ JumblePuzzle::~JumblePuzzle() {
 
 // Copy constructor
 JumblePuzzle::JumblePuzzle(const JumblePuzzle& jp) {
-    this->puzzleSize = jp.getSize();
-    this->rowPos = jp.getRowPos();
-    this->colPos = jp.getColPos();
-    this->direction = jp.getDirection();
+    puzzleSize = jp.getSize();
+    rowPos = jp.getRowPos();
+    colPos = jp.getColPos();
+    direction = jp.getDirection();
 
     charArrayPtr* existingPuzzle = jp.getJumble();
-    charArrayPtr* newPuzzle = new charArrayPtr[this->puzzleSize];
+    puzzle = new charArrayPtr[this->puzzleSize];
 
-    for (int i = 0; i < this->puzzleSize; i++) {
-        newPuzzle[i] = new char[this->puzzleSize];
-        for (int j = 0; j < this->puzzleSize; j++) {
-            newPuzzle[i][j] = existingPuzzle[i][j];
+    for (int i = 0; i < puzzleSize; i++) {
+        puzzle[i] = new char[puzzleSize];
+        for (int j = 0; j < puzzleSize; j++) {
+            puzzle[i][j] = existingPuzzle[i][j];
         }
     }
-    this->puzzle = newPuzzle;
-    
 }
 
 // Assignment Operator
@@ -180,25 +178,25 @@ charArrayPtr* JumblePuzzle::getJumble() const {
 
 bool JumblePuzzle::checkExtreme(const int& guessRow, const int& guessCol, const char& guessDir) {
     if (guessDir == 'n') {
-        for (int i = 0; i < this->hiddenWord.length(); i++) {
+        for (int i = 0; i < hiddenWord.length(); i++) {
             if (puzzle[guessRow - i][guessCol] != hiddenWord[i]) {
                 return false;
             }
         }
     } else if (guessDir == 'e') {
-        for (int i = 0; i < this->hiddenWord.length(); i++) {
+        for (int i = 0; i < hiddenWord.length(); i++) {
             if (puzzle[guessRow][guessCol + i] != hiddenWord[i]) {
                 return false;
             }
         }
     } else if (guessDir == 's') {
-        for (int i = 0; i < this->hiddenWord.length(); i++) {
+        for (int i = 0; i < hiddenWord.length(); i++) {
             if (puzzle[guessRow + i][guessCol] != hiddenWord[i]) {
                 return false;
             }
         }
     } else if (guessDir == 'w') {
-        for (int i = 0; i < this->hiddenWord.length(); i++) {
+        for (int i = 0; i < hiddenWord.length(); i++) {
             if (puzzle[guessRow][guessCol - i] != hiddenWord[i]) {
                 return false;
             }
@@ -206,4 +204,3 @@ bool JumblePuzzle::checkExtreme(const int& guessRow, const int& guessCol, const 
     }
     return true;
 }
-
