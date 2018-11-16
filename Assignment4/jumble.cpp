@@ -32,55 +32,55 @@ JumblePuzzle::JumblePuzzle(const string& hiddenWord, const string& difficulty) {
 }
 
 const int& JumblePuzzle::setSize() {
-    if (this->difficulty == "easy") {
-        return this->hiddenWord.length() * 2;
-    } else if (this->difficulty == "medium") {
-        return this->hiddenWord.length() * 3;
-    } else if (this->difficulty == "hard" || this->difficulty == "extreme") {
-        return this->hiddenWord.length() * 4;
+    if (difficulty == "easy") {
+        return hiddenWord.length() * 2;
+    } else if (difficulty == "medium") {
+        return hiddenWord.length() * 3;
+    } else if (difficulty == "hard" || difficulty == "extreme") {
+        return hiddenWord.length() * 4;
     } 
     return -1;
 }
 
 charArrayPtr* JumblePuzzle::initializePuzzle() {
-    charArrayPtr* completePuzzle = initializeRandomPuzzle(this->puzzleSize);
+    charArrayPtr* completePuzzle = initializeRandomPuzzle(puzzleSize);
     bool wordPlaced = false;
     int row;
     int col;
     int hiddenWordIdx;
     while (!wordPlaced) {
-        this->direction = this->directionArr[rand() % 4];
-        this->rowPos = rand() % (this->puzzleSize);
-        this->colPos = rand() % (this->puzzleSize);
+        direction = directionArr[rand() % 4];
+        rowPos = rand() % (puzzleSize);
+        colPos = rand() % (puzzleSize);
         row = this->rowPos;
         col = this->colPos;
         hiddenWordIdx = 0;
         if (direction == 'n') { // randomPuzzle[row--][col]
-            while (row >= 0 && hiddenWordIdx < this->hiddenWord.length()) {
-                completePuzzle[row--][col] = this->hiddenWord[hiddenWordIdx++];
+            while (row >= 0 && hiddenWordIdx < hiddenWord.length()) {
+                completePuzzle[row--][col] = hiddenWord[hiddenWordIdx++];
             }
-            if (hiddenWordIdx == this->hiddenWord.length()) {
+            if (hiddenWordIdx == hiddenWord.length()) {
                 wordPlaced = true;
             }
         } else if (direction == 'e') {  // randomPuzzle[row][col++]
-            while (col < this->puzzleSize && hiddenWordIdx < this->hiddenWord.length()) {
-                completePuzzle[row][col++] = this->hiddenWord[hiddenWordIdx++];
+            while (col < puzzleSize && hiddenWordIdx < hiddenWord.length()) {
+                completePuzzle[row][col++] = hiddenWord[hiddenWordIdx++];
             }
-            if (hiddenWordIdx == this->hiddenWord.length()) {
+            if (hiddenWordIdx == hiddenWord.length()) {
                 wordPlaced = true;
             }
         } else if (direction == 's') { // randomPuzzle[row++][col]
-            while (row < this->puzzleSize && hiddenWordIdx < this->hiddenWord.length()) {
-                completePuzzle[row++][col] = this->hiddenWord[hiddenWordIdx++];
+            while (row < puzzleSize && hiddenWordIdx < hiddenWord.length()) {
+                completePuzzle[row++][col] = hiddenWord[hiddenWordIdx++];
             }
-            if (hiddenWordIdx == this->hiddenWord.length()) {
+            if (hiddenWordIdx == hiddenWord.length()) {
                 wordPlaced = true;
             }
         } else if (direction == 'w') { // randomPuzzle[row][col--]
-            while (col >= 0 && hiddenWordIdx < this->hiddenWord.length()) {
-                completePuzzle[row][col--] = this->hiddenWord[hiddenWordIdx++];
+            while (col >= 0 && hiddenWordIdx < hiddenWord.length()) {
+                completePuzzle[row][col--] = hiddenWord[hiddenWordIdx++];
             }
-            if (hiddenWordIdx == this->hiddenWord.length()) {
+            if (hiddenWordIdx == hiddenWord.length()) {
                 wordPlaced = true;
             }
         }
@@ -95,7 +95,7 @@ charArrayPtr* JumblePuzzle::initializeRandomPuzzle(const int& size) {
         randomPuzzle[i] = new char[size];
         for (int j = 0; j < size; j++) {
             if (this->difficulty == "extreme") {
-                randomPuzzle[i][j] = this->hiddenWord[rand() % this->hiddenWord.length()];
+                randomPuzzle[i][j] = hiddenWord[rand() % hiddenWord.length()];
             } else{
                 randomPuzzle[i][j] = 'a' + rand() % 26; // Select random letter using ASCII
             }
