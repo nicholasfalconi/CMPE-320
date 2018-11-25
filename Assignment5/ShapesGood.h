@@ -58,3 +58,29 @@ public:
 	FilledTextSquare(int len, int wid, string outlineColour, string fillColour, string message);
     virtual void draw();
 };
+
+class Circle : public Shape {
+public:
+    Circle(int len, int wid, string outlineColour);
+    virtual void draw();
+    string getOutlineColour();
+private:
+    string outlineColour;
+};
+
+class FilledCircle : public Circle, public Fillable {
+public:
+    FilledCircle(int len, int wid, string outlineColour, string fillColour);
+    virtual void draw();
+private:
+    string fillColour;
+};
+
+class Arc : public Shape {
+public:
+    Arc(int len, int wid, string outlineColour);
+    virtual void draw();
+    string getOutlineColour();
+private:
+    string outlineColour;
+};
