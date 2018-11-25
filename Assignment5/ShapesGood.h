@@ -11,8 +11,9 @@ using namespace std;
 
 class Shape {
 public:
-	Shape(int, int);
+	Shape(int len, int wid);
 	virtual ~Shape();
+    virtual void draw();
 	int getLength();
 	int getWidth();
 private:
@@ -21,36 +22,39 @@ private:
 
 class Fillable {
 public:
-    Fillable(string);
+    Fillable(string fillColour);
     virtual ~Fillable();
     string getFillColour();
 private:
     string fillColour;
-}
+};
 
 class Text {
-    
-}
+public:
+    Text(string message);
+    virtual ~Text();
+    string getText();
+private:
+    string text;
+};
+
 class Square : public Shape {
 public:
-	Square(const int&, const int&, const string&);
-	void draw();
-    const string& getOutlineColour();
+	Square(int len, int wid, string outlineColour);
+	virtual void draw();
+    string getOutlineColour();
 private:
-    const string& outlineColour;
+    string outlineColour;
 };
 
-class FilledSquare : public Shape, public Fillable {
+class FilledSquare : public Square, public Fillable {
 public:
-	FilledSquare(int, int);
-	void drawOutside(string);
-	void fill(string);
+	FilledSquare(int len, int wid, string outlineColour, string fillColour);
+    virtual void draw();
 };
 
-class FilledTextSquare : public Shape {
+class FilledTextSquare : public Square, public Fillable, public Text {
 public:
-	FilledTextSquare(int, int);
-	void drawOutside(string);
-	void fill(string);
-	void drawText(string);
+	FilledTextSquare(int len, int wid, string outlineColour, string fillColour, string message);
+    virtual void draw();
 };
